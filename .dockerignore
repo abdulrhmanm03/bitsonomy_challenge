@@ -1,0 +1,27 @@
+# Node modules
+node_modules
+npm-debug.log
+.coverage
+.coverage.*
+
+# tsc build files
+build
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Git files
+.git
+.gitignore
+
+# Read me files
+*.md
+
+# Environment variables
+.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+

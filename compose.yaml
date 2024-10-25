@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      MONGO_URI: mongodb://db:27017/database
+    env_file:
+      - ".env"
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker_volumes/mongo-data:/data/db
+
+volumes:
+  mongo-data:
