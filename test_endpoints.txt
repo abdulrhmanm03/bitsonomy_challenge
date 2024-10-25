@@ -1,0 +1,27 @@
+# health check GET / endpoint
+curl http://localhost:8080/
+
+# test the POST /signup endpoint
+curl -X POST http://localhost:8080/signup \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }'
+
+# test the POST /signin endpoint
+curl -X POST http://localhost:8080/signin \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }'
+
+# test the POST /refresh_token endpoint
+curl -X POST http://localhost:8080/refresh-token \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refresh_token": "your-refresh-token-here"
+  }'
+

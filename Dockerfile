@@ -15,8 +15,8 @@ COPY . .
 RUN npm install -g typescript
 RUN npm run build
 
-# Expose port 3000
-EXPOSE 3000
+# Expose port 8080
+EXPOSE 8080
 
 # Start the application
 CMD ["npm", "start"]

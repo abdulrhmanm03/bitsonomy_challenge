@@ -1,43 +1,19 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-
-dotenv.config();
+import authRouter from "./routes/auth";
+import config from "./config";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = config.port;
 
 app.use(express.json());
+
+app.use("/", authRouter);
 
 mongoose
   .connect(process.env.MONGO_URI as string, {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
-
-const itemSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-});
-
-const Item = mongoose.model("Item", itemSchema);
-
-app.post("/items", async (req, res) => {
-  try {
-    const item = new Item(req.body);
-    await item.save();
-    res.status(201).send(item);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
-
-app.get("/items", async (req, res) => {
-  try {
-    const items = await Item.find();
-    res.send(items);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello, World");
