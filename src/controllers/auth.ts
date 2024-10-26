@@ -6,11 +6,11 @@ import * as EmailValidator from "email-validator";
 import config from "../config";
 import {
   SignupRequestBody,
-  BaseResponse,
   SigninResponse,
   SigninRequestBody,
   refreshTokenRequestBody,
-} from "../interfaces/auth";
+} from "../interfaces/authRouter";
+import { BaseResponse } from "../interfaces/helpers";
 
 export async function signup(
   req: Request<{}, BaseResponse, SignupRequestBody>,
@@ -49,8 +49,12 @@ export async function signup(
       password,
       config.salt_rounds_for_hashing,
     );
-    const user = new UserModel({ name, email, password: hashedPassword });
-    await user.save();
+
+    await UserModel.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {

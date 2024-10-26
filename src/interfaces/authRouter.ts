@@ -1,3 +1,5 @@
+import { BaseResponse } from "./helpers";
+
 export interface SignupRequestBody {
   name: string;
   email: string;
@@ -11,10 +13,6 @@ export interface SigninRequestBody {
 
 export interface refreshTokenRequestBody {
   refresh_token: string;
-}
-
-export interface BaseResponse {
-  message: string;
 }
 
 // also used with the /refresh-token endpoint

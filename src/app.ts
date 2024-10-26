@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import authRouter from "./routes/auth";
 import config from "./config";
+import organizationRouter from "./routes/organization";
 
 const app = express();
 const PORT = config.port;
@@ -9,6 +10,7 @@ const PORT = config.port;
 app.use(express.json());
 
 app.use("/", authRouter);
+app.use("/organization", organizationRouter);
 
 mongoose
   .connect(process.env.MONGO_URI as string, {})

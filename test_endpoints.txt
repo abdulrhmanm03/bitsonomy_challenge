@@ -25,3 +25,44 @@ curl -X POST http://localhost:8080/refresh-token \
     "refresh_token": "your-refresh-token-here"
   }'
 
+# test the POST /organization endpoint
+curl -X POST http://localhost:8080/organization \
+-H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+  "name": "My Organization",
+  "description": "This is a description of my organization."
+}'
+
+# test the GET /organization/{organization_id} endpoint
+curl -X GET http://localhost:8080/organization/YOUR_ORGANIZATION_ID \
+-H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+-H "Content-Type: application/json"
+
+# test the GET /organization endpoint
+curl -X GET http://localhost:8080/organization \
+-H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+
+# test the PUT /organization/{organization_id} endpoint
+curl -X PUT \
+  http://localhost:8080/organization/YOUR_ORGANIZATION_ID \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "name": "Updated Organization Name",
+        "description": "Updated description of the organization."
+      }'
+
+# test the DELETE /organization/{organization_id} endpoint
+curl -X DELETE \
+  http://localhost:8080/organization/YOUR_ORGANIZATION_ID \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+
+# test the POST /organization/{organization_id}/invite endpoint
+curl -X POST \
+  http://localhost:8080/organizations/YOUR_ORGANIZATION_ID/invite \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "email": "invited_user@example.com"
+      }'
